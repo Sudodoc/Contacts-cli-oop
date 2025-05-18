@@ -1,0 +1,91 @@
+{
+    "1AV44": {
+        "number": 1,
+        "name": "Анатолий",
+        "surname": "Виздемондов",
+        "phone": "+79956668844",
+        "comment": "Просто Толян",
+        "tags": [
+            "работа",
+            "кодер"
+        ],
+        "created": "28.04.25|19:02:35",
+        "modified": null
+    },
+    "2FF77": {
+        "number": 2,
+        "name": "Федот",
+        "surname": "Федотов",
+        "phone": "+7(999)444-55-77",
+        "comment": "Федот да не тот",
+        "tags": [
+            "пиво",
+            "кодер"
+        ],
+        "created": "28.04.25|19:04:46",
+        "modified": null
+    },
+    "3BG99": {
+        "number": 3,
+        "name": "Bill",
+        "surname": "Gates",
+        "phone": "+1-333-444-55-99",
+        "comment": "must die",
+        "tags": [
+            "microsoft",
+            "пиво",
+            "windows",
+            "кодер"
+        ],
+        "created": "28.04.25|19:58:55",
+        "modified": null
+    },
+    "4PD21": {
+        "number": 4,
+        "name": "Павлентий",
+        "surname": "Дуровский",
+        "phone": "+34666777-44-21",
+        "comment": "не Воля",
+        "tags": [
+            "telegram",
+            "кодер"
+        ],
+        "created": "28.04.25|20:03:42",
+        "modified": "28.04.25|23:51:38"
+    },
+    "5XXYY": {
+        "number": 5,
+        "name": "Anonymous",
+        "surname": "Client",
+        "phone": "N/A",
+        "comment": "N/A",
+        "tags": "N/A",
+        "created": "01.05.25|00:29:21",
+        "modified": "01.05.25|01:04:47"
+    },
+    "6BZH22": {
+        "number": 6,
+        "name": "Boriz",
+        "surname": "Жориков",
+        "phone": "+448883339922",
+        "comment": "Смешная стрижка",
+        "tags": [
+            "кент"
+        ],
+        "created": "07.05.25|18:45:21",
+        "modified": "17.05.25|22:05:41"
+    },
+    "7SZH55": {
+        "number": 7,
+        "name": "Стефан",
+        "surname": "Жобский",
+        "phone": "+79994445555",
+        "comment": "Прикольный телефон",
+        "tags": [
+            "кодер",
+            "iphone"
+        ],
+        "created": "18.05.25|22:54:26",
+        "modified": null
+    }
+}
