@@ -59,8 +59,4 @@ def search(opt: str):
     return True
 
 if __name__ == '__main__':
-
-    mlist = ['x']
-    print(mlist)
-
-    print(isinstance(mlist, list))
+    pass

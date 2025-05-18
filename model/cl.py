@@ -70,4 +70,6 @@ class SingleContact(ContactList):
         repo.cont_file.save(self.book)
 
 
+"""Собственно главный объект
+список контактов, с которым работаем"""
 contacts = ContactList()

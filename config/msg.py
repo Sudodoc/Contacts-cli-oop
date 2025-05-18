@@ -67,6 +67,7 @@ cont_not_found = "Contact file not found {file}"
 no_way_to_save_conf = "No file {file} found to write data settings"
 no_way_to_save_cont = "No file {file} found to write data contacts"
 
+
 '''Сообщения запросов данных
 '''
 @dataclass

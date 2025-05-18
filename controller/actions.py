@@ -89,6 +89,4 @@ def global_search():
 
 
 if __name__ == '__main__':
-    # delete('6BZH22')
-    # modify('6BZH22')
-    print(create_contact().get(msg.cont_keys))
+    pass

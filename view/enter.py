@@ -136,9 +136,5 @@ def look_up():
     return look_up()
 
 
-# if __name__ == '__main__':
-#
-#     contact = new_contact(msg.fields_input)
-#
-#     for key, value in contact.items():
-#         print(f'{key} : {value}')
+if __name__ == '__main__':
+    pass
