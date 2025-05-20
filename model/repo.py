@@ -31,7 +31,6 @@ class StorageManager:
     """
     Класс для управления файлами хранилища.
     """
-
     def __init__(self, file_path: Path, isconfig: bool = False):
         """
         Инициализирует менеджер хранилища.
@@ -42,6 +41,7 @@ class StorageManager:
         """
         self.path = file_path
         self.isconfig = isconfig
+
 
     def open(self) -> dict:
         """
@@ -62,6 +62,7 @@ class StorageManager:
                 raise ConfigFileNotFoundError(msg.conf_not_found.format(file=self.path))
             else:
                 raise ContactsFileNotFoundError(msg.cont_not_found.format(file=self.path))
+
 
     def save(self, content: dict) -> None:
         """
