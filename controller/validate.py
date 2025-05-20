@@ -42,11 +42,11 @@ def confirm(opt: str, ok_value: str = msg.Y, no_value: str = msg.N) -> bool:
 
 def mode(opt: str, modify_value: str = msg.M, delete_value: str = msg.D, cancel_value: str = msg.X) -> bool:
     """
-    Проверяет корректность выбранного режима (модификация/удаление/отмена).
+    Проверяет корректность выбранного режима (редактирование/удаление/отмена).
     
     Args:
         opt (str): Введенное значение
-        modify_value (str, optional): Значение для модификации. По умолчанию msg.M
+        modify_value (str, optional): Значение для редактирования. По умолчанию msg.M
         delete_value (str, optional): Значение для удаления. По умолчанию msg.D
         cancel_value (str, optional): Значение для отмены. По умолчанию msg.X
         
