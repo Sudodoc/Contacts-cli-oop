@@ -63,7 +63,7 @@ def modify_or_delete(one_id: str = '', ok: bool = True) -> None:
                 delete(detected_id)
 
 
-def create_contact() -> SingleContact:
+def create_contact() -> SingleContact | dict:
     """
     Создает новый контакт.
     
