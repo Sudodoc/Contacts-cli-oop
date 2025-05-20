@@ -49,11 +49,12 @@ def confirm(prompt: str) -> bool | None:
 
 def mod_or_del(prompt: str, ok: bool = True) -> tuple[bool, str | None]:
     """
-    Запрашивает и валидирует выбор между модификацией и удалением контакта.
+    Запрашивает и валидирует выбор между редактированием и удалением контакта.
     
     Args:
         prompt (str): Текст запроса
-        ok (bool, optional): Флаг (True по умолчанию), если пользователь не инициировал отмену нажатием на клавишу отмены msg.X.
+        ok (bool, optional): Флаг (True по умолчанию),
+        если пользователь не инициировал отмену нажатием на клавишу отмены msg.X.
         
     Returns:
         tuple[bool, str | None]: Кортеж (флаг отмены, выбранное действие)
@@ -89,7 +90,7 @@ def cid(prompt: str, ok: bool = True) -> tuple[bool, str | None]:
         return cid(prompt)
 
 
-def mod_value(detected_id: str, ok: bool = True) -> tuple[bool, str | None, str | None]:
+def mod_value(detected_id: str, ok: bool = True) -> tuple[bool, str | None, str | list | None]:
     """
     Запрашивает и валидирует поле для модификации контакта.
     
