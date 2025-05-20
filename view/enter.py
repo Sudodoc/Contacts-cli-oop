@@ -1,11 +1,22 @@
+"""
+Модуль ввода данных.
+Содержит функции для получения и проверки корректности введенных пользовательских данных.
+"""
+
 from config import msg
 from controller import validate
 
 
-def option(prompt: str):
-
-    """Запрос пункта главного меню"""
-
+def option(prompt: str) -> str:
+    """
+    Запрашивает и проверяет корректность выбора пункта главного меню.
+    
+    Args:
+        prompt (str): Текст запроса
+        
+    Returns:
+        str: Выбранная опция
+    """
     choice = input(prompt)
     if validate.option(choice):
         return choice
@@ -14,10 +25,16 @@ def option(prompt: str):
         return option(prompt)
 
 
-def confirm(prompt: str):
-
-    """Подтверждение действия [y]/[n]"""
-
+def confirm(prompt: str) -> bool | None:
+    """
+    Запрашивает и проверяет подтверждение действия (да/нет).
+    
+    Args:
+        prompt (str): Текст запроса
+        
+    Returns:
+        bool | None: True для подтверждения, False для отказа, None при ошибке
+    """
     yes_or_no = input(prompt).lower()
     if validate.confirm(yes_or_no):
         if yes_or_no == msg.Y:
@@ -30,10 +47,17 @@ def confirm(prompt: str):
         return confirm(prompt)
 
 
-def mod_or_del(prompt: str, ok=True):
-
-    """Запрос на изменение [m] или удаление [d] контакта или отмена [x]"""
-
+def mod_or_del(prompt: str, ok: bool = True) -> tuple[bool, str | None]:
+    """
+    Запрашивает и валидирует выбор между модификацией и удалением контакта.
+    
+    Args:
+        prompt (str): Текст запроса
+        ok (bool, optional): Флаг (True по умолчанию), если пользователь не инициировал отмену нажатием на клавишу отмены msg.X.
+        
+    Returns:
+        tuple[bool, str | None]: Кортеж (флаг отмены, выбранное действие)
+    """
     action = input(prompt).lower()
     if validate.mode(action):
         if action == msg.X:
@@ -44,10 +68,17 @@ def mod_or_del(prompt: str, ok=True):
         return mod_or_del(prompt)
 
 
-def cid(prompt: str, ok=True):
-
-    """Запрос ID контакта или отмена [x]"""
-
+def cid(prompt: str, ok: bool = True) -> tuple[bool, str | None]:
+    """
+    Запрашивает и валидирует введенный пользователем ID контакта.
+    
+    Args:
+        prompt (str): Текст запроса
+        ok (bool, optional): Флаг (True по умолчанию), если пользователь не инициировал отмену нажатием на клавишу отмены msg.X.
+        
+    Returns:
+        tuple[bool, str | None]: Кортеж (флаг успешности, ID контакта)
+    """
     contact_id = input(prompt).upper()
     if validate.cid(contact_id):
         if contact_id == msg.X.upper():
@@ -58,10 +89,17 @@ def cid(prompt: str, ok=True):
         return cid(prompt)
 
 
-def mod_value(detected_id, ok=True):
-
-    """Запрашиваем какой параметр найденного контакта с ID {detected_id} поменять"""
-
+def mod_value(detected_id: str, ok: bool = True) -> tuple[bool, str | None, str | None]:
+    """
+    Запрашивает и валидирует поле для модификации контакта.
+    
+    Args:
+        detected_id (str): ID контакта
+        ok (bool, optional): Флаг (True по умолчанию), если пользователь не инициировал отмену нажатием на клавишу отмены msg.X.
+        
+    Returns:
+        tuple[bool, str | None, str | None]: Кортеж (флаг успешности, поле, новое значение)
+    """
     field = input(msg.ask.field).lower()
     if validate.field(field, detected_id):
         if field == msg.X:
@@ -72,16 +110,22 @@ def mod_value(detected_id, ok=True):
             new_value = input(msg.ask.value)
             if new_value == msg.X:
                 return False, None, None
-        return ok, field , new_value
+        return ok, field, new_value
     else:
         print(msg.field_err)
         return mod_value(detected_id)
 
 
-def phone(prompt):
-
-    """Запрашиваем номер телефона и проверяем ввод"""
-
+def phone(prompt: str) -> str | bool:
+    """
+    Запрашивает и валидирует номер телефона.
+    
+    Args:
+        prompt (str): Текст запроса
+        
+    Returns:
+        str | bool: Номер телефона или False при отмене
+    """
     phone_value = input(prompt)
     if validate.phone(phone_value):
         if phone_value == msg.X:
@@ -92,13 +136,18 @@ def phone(prompt):
         return phone(prompt)
 
 
-def new_contact(fields_input: dict):
-
-    """Запрашиваем данные для контакта"""
-
+def new_contact(fields_input: dict) -> tuple[dict, bool]:
+    """
+    Последовательно запрашивает данные для нового контакта.
+    
+    Args:
+        fields_input (dict): Словарь с текстами запросов.
+        
+    Returns:
+        tuple[dict, bool]: Кортеж (словарь значений, флаг отмены)
+    """
     values = {}
     for field, prompt in fields_input.items():
-
         if field == msg.TAGS:
             tag_value = validate.entry(list(set((input(prompt)).lower().split(' '))))
             if tag_value:
@@ -123,10 +172,13 @@ def new_contact(fields_input: dict):
     return values, False
 
 
-def look_up():
-
-    """Запрашиваем строку поиска"""
-
+def look_up() -> str | bool:
+    """
+    Запрашивает и валидирует строку поиска.
+    
+    Returns:
+        str | bool: Строка поиска или False при отмене
+    """
     search_str = input(msg.ask.search)
     if validate.search(search_str):
         if search_str == msg.X:

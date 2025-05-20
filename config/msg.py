@@ -10,7 +10,7 @@ M = 'm'
 D = 'd'
 
 
-'''Определяем кастомные названия для словарей
+'''Определяем кастомные названия полей для словарей
 '''
 ID = 'cid'
 TAGS = 'tags'
@@ -24,7 +24,7 @@ MODIFIED = 'modified'
 
 cont_keys = [NUMBER, NAME, SURN, PHONE, NOTE, TAGS, CREATED, MODIFIED]
 
-COUNTER = 'counter'
+COUNTER = 'counter' #Это для счетчика в настройках
 
 '''Определяем пункты главного меню
 '''

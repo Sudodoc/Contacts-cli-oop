@@ -1,15 +1,29 @@
+"""
+Модуль отображения данных.
+Содержит функции для вывода информации в консоль в различных форматах.
+"""
+
 from config import msg
 from prettytable import PrettyTable
 
-def options():
+
+def options() -> None:
+    """
+    Отображает меню опций программы.
+    """
     print(msg.opt)
     for i, option in enumerate(msg.options, start=1):
         print(f"\t[{i}] {option}")
     print(msg.esc)
 
 
-def all_(cont_dict: dict):
-
+def all_(cont_dict: dict) -> None:
+    """
+    Отображает все контакты в виде таблицы.
+    
+    Args:
+        cont_dict (dict): Словарь контактов
+    """
     ctable = PrettyTable()
     ctable.field_names = ['#',
                           'ID',
@@ -23,7 +37,6 @@ def all_(cont_dict: dict):
                           ]
 
     for i, (cid, info) in enumerate(cont_dict.items(), start=1):
-
         ctable.add_rows(
             [
                 [
@@ -42,8 +55,14 @@ def all_(cont_dict: dict):
     print('', ctable, sep='\n')
 
 
-def one_(cont_dict: dict,detect_id: str):
-
+def one_(cont_dict: dict, detect_id: str) -> None:
+    """
+    Отображает информацию об одном контакте.
+    
+    Args:
+        cont_dict (dict): Словарь контактов
+        detect_id (str): ID контакта для отображения
+    """
     print(f'\nID: {detect_id}, {cont_dict[detect_id].get(msg.CREATED, "N/A")}')
     print(f'Name/Nickname : {cont_dict[detect_id].get(msg.NAME, "N/A")}')
     print(f'Surname       : {cont_dict[detect_id].get(msg.SURN, "N/A")}')
@@ -53,13 +72,17 @@ def one_(cont_dict: dict,detect_id: str):
     print('---')
 
 
-def alert(txt: str):
-
+def alert(txt: str) -> None:
+    """
+    Отображает сообщение в рамке.
+    
+    Args:
+        txt (str): Текст сообщения
+    """
     separator = f'\t{'-' * len(txt)}'
     print(f'\n{separator}')
     print(f'\t{txt}')
     print(f'{separator}\n')
-
 
 
 if __name__ == "__main__":

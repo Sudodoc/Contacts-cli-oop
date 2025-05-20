@@ -1,11 +1,21 @@
+"""
+Модуль, содержащий основные действия с контактами.
+Включает функции для создания, удаления, модификации и поиска контактов.
+"""
+
 from model.cl import SingleContact, contacts
 from view import enter, show
 from config import msg
 from model import cl, repo
 
 
-def delete(detected_id: str):
-
+def delete(detected_id: str) -> None:
+    """
+    Удаляет контакт по его ID.
+    
+    Args:
+        detected_id (str): ID контакта для удаления
+    """
     to_delete = enter.confirm(msg.ask.confirm_del)
 
     if to_delete:
@@ -13,9 +23,15 @@ def delete(detected_id: str):
         show.alert(msg.del_ok.format(cid=detected_id))
 
 
+def modify(detected_id: str) -> None:
+    """
+    Вносит изменения в существующий контакт с заданным ID {detected_id}
+    Позволяет поменять один из параметров контакта.
 
-def modify(detected_id: str):
     
+    Args:
+        detected_id (str): ID контакта для модификации
+    """
     ok, modi_key, new_value = enter.mod_value(detected_id)
 
     if ok:
@@ -23,9 +39,14 @@ def modify(detected_id: str):
         show.alert(msg.modify_ok.format(cid=detected_id))
 
 
-
-def modify_or_delete(one_id='', ok=True):
-
+def modify_or_delete(one_id: str = '', ok: bool = True) -> None:
+    """
+    Обрабатывает выбор между изменением и удалением контакта.
+    
+    Args:
+        one_id (str, optional): ID контакта. По умолчанию пустая строка.
+        ok (bool, optional): Флаг успешности операции. По умолчанию True.
+    """
     if not one_id:
         ok, detected_id = enter.cid(msg.ask.cid)
     else:
@@ -38,14 +59,17 @@ def modify_or_delete(one_id='', ok=True):
         if ok:
             if action == msg.M:
                 modify(detected_id)
-
-
             elif action == msg.D:
                 delete(detected_id)
 
 
-def create_contact():
-
+def create_contact() -> SingleContact:
+    """
+    Создает новый контакт.
+    
+    Returns:
+        SingleContact: Созданный контакт или None, если операция была отменена
+    """
     settings = repo.conf_file.open()
     data, cancel = enter.new_contact(msg.fields_input)
     if cancel: return data
@@ -66,8 +90,11 @@ def create_contact():
     return contact
 
 
-def global_search():
-
+def global_search() -> None:
+    """
+    Выполняе глобальный поиск контактов по заданной строке.
+    Позволяет модифицировать или удалить найденные контакты.
+    """
     search_str = enter.look_up()
     if not search_str:
         return None
@@ -78,14 +105,11 @@ def global_search():
         if len(found_contacts) == 1:
             one_id = list(found_contacts.keys())[0]
             modify_or_delete(one_id)
-
         else:
             show.all_(found_contacts)
             modify_or_delete()
 
     return global_search()
-
-
 
 
 if __name__ == '__main__':

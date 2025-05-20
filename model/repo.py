@@ -1,3 +1,8 @@
+"""
+Модуль для работы с хранилищем данных.
+Содержит классы и функции для управления файлами контактов и настроек путей к файлам.
+"""
+
 import json
 from pathlib import Path
 from config import msg
@@ -16,17 +21,39 @@ class ConfigFileNotFoundError(FileNotFoundError):
     """Кастомное исключение если нет файла settings.json"""
     pass
 
+
 class ContactsFileNotFoundError(FileNotFoundError):
     """Кастомное исключение если нет файла контактов"""
     pass
 
-class StorageManager:
 
-    def __init__(self, file_path: Path, isconfig=False):
+class StorageManager:
+    """
+    Класс для управления файлами хранилища.
+    """
+
+    def __init__(self, file_path: Path, isconfig: bool = False):
+        """
+        Инициализирует менеджер хранилища.
+        
+        Args:
+            file_path (Path): Путь к файлу
+            isconfig (bool, optional): Флаг конфигурационного файла. По умолчанию False
+        """
         self.path = file_path
         self.isconfig = isconfig
 
-    def open(self):
+    def open(self) -> dict:
+        """
+        Открывает и читает файл.
+        
+        Returns:
+            dict: Содержимое файла в виде словаря
+            
+        Raises:
+            ConfigFileNotFoundError: Если не найден конфигурационный файл
+            ContactsFileNotFoundError: Если не найден файл контактов
+        """
         try:
             with self.path.open('r', encoding='UTF-8') as file:
                 return json.load(file)
@@ -36,7 +63,17 @@ class StorageManager:
             else:
                 raise ContactsFileNotFoundError(msg.cont_not_found.format(file=self.path))
 
-    def save(self, content):
+    def save(self, content: dict) -> None:
+        """
+        Записывает данные в файл.
+        
+        Args:
+            content (dict): Данные для сохранения
+            
+        Raises:
+            ConfigFileNotFoundError: Если не удалось сохранить конфигурационный файл
+            ContactsFileNotFoundError: Если не удалось сохранить файл контактов
+        """
         try:
             with self.path.open('w', encoding='UTF-8') as file:
                 json.dump(content, file, indent=4, ensure_ascii=False)
@@ -65,7 +102,6 @@ count = conf_file.open()[msg.COUNTER]
 
 
 if __name__ == '__main__':
-
     print(BASE_PATH)
     print(CONF_PATH)
     conf = StorageManager(CONF_PATH)
