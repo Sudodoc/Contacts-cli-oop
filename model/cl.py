@@ -23,7 +23,8 @@ class ContactList:
         Инициализирует список контактов.
         
         Args:
-            cont_dict (Dict[str, dict], optional): Словарь контактов. По умолчанию загружается из файла
+            cont_dict (Dict[str, dict], optional): Словарь контактов.
+            По умолчанию загружается из файла contacts.json
             cont_path (Path, optional): Путь к файлу контактов. По умолчанию берется из repo
         """
         self.book = cont_dict
@@ -92,7 +93,6 @@ class SingleContact(ContactList):
     Класс для работы с отдельным контактом.
     Наследуется от ContactList.
     """
-
     def __init__(self, c_count: int, c_name: str, c_surn: str, c_phone: str, c_note: str, c_tags: list, modified: str = None,
                  cont_dict: Dict[str, dict] = repo.cont_file.open(),
                  cont_path: Path = repo.cont_path

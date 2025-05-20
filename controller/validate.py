@@ -12,7 +12,7 @@ def option(opt: str, cancel_value: str = msg.X) -> bool:
     Проверяет корректность выбранной опции меню.
     
     Args:
-        opt (str): Введенная опция
+        opt (str): Опция меню
         cancel_value (str, optional): Значение для отмены. По умолчанию msg.X
         
     Returns:
